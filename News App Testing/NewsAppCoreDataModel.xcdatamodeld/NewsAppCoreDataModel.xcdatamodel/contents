@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BookmarkNewsData" representedClassName="BookmarkNewsData" syncable="YES" codeGenerationType="class">
+        <attribute name="newsDescription" attributeType="String"/>
+        <attribute name="newsImage" attributeType="String"/>
+        <attribute name="newsTitle" attributeType="String"/>
+        <attribute name="newsUrl" attributeType="String"/>
+        <attribute name="publishedTime" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="BookmarkNewsData" positionX="-63" positionY="-18" width="128" height="104"/>
+    </elements>
+</model>
