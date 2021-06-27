@@ -26,6 +26,9 @@ struct BBCNewsDetailView: View {
                         .padding(.top, geometry.size.height * 0.5)
                         .padding(.leading, geometry.size.width * 0.5)
                 }
+                
+                // MARK:- Header section
+                
             VStack {
                 
                 Button(action: {self.presentationMode.wrappedValue.dismiss()}, label: {
@@ -52,6 +55,9 @@ struct BBCNewsDetailView: View {
                     ScrollView(showsIndicators: false){
                         
                         ForEach(newsViewModel.newsData) {item in
+                            
+                            // MARK:- Detail view section
+                            
                             NavigationLink(
                                 destination:
                                     VStack {
@@ -78,11 +84,18 @@ struct BBCNewsDetailView: View {
                                             
                                             Spacer()
                                             
-                                            Button(action: {}, label: {
+                                            Button(action: {
+                                                
+                                                newsViewModel.shareNews(news: item.url)
+                                                
+                                            }, label: {
                                                 Image(systemName: "square.and.arrow.up")
                                             })
                                         }
                                     }),
+                                
+                                
+                                // MARK:- Body Scetion
                                 
                                 label: {
                                     HStack(alignment : .center){
@@ -137,7 +150,6 @@ struct BBCNewsDetailView: View {
                 newsViewModel.LoadBBCNewsDetailData()
             })
         }
-        
     }
 }
 

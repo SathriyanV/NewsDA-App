@@ -56,7 +56,6 @@ struct GeneralView: View {
                                     UrlImageViewDetailView(urlString: item.urlToImage)
                                         
                                     newsViewModel.displayNewsDetailView(title: item.title, description: item.description ?? "No description is available", url: item.url)
-                                      
                                 }
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                                 .navigationBarHidden(false)
@@ -75,7 +74,11 @@ struct GeneralView: View {
                                         
                                         Spacer()
                                         
-                                        Button(action: {}, label: {
+                                        Button(action: {
+                                            
+                                            newsViewModel.shareNews(news: item.url)
+                                            
+                                        }, label: {
                                             Image(systemName: "square.and.arrow.up")
                                         })
                                     }

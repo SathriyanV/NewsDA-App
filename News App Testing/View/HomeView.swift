@@ -74,7 +74,11 @@ struct HomeView: View {
                                                 
                                                 Spacer()
                                                 
-                                                Button(action: {}, label: {
+                                                Button(action: {
+                                                    
+                                                    newsViewModel.shareNews(news: item.url)
+                                                    
+                                                }, label: {
                                                     Image(systemName: "square.and.arrow.up")
                                                 })
                                             }

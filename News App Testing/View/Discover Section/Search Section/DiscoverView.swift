@@ -63,25 +63,25 @@ struct DiscoverView: View {
                             },
                             label : {
                                 
-                                        VStack{
-                                            Image(systemName: "magnifyingglass")
-                                        }
-                                        .frame(width: 46, height: 46)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .padding(.trailing, 20)
-                                        .padding(.leading, 5)
-                                        .shadow(radius: 1.5)
-                                    })
-                                
-                                    .alert(isPresented: $noValue,
-                                           content: {
-                                            Alert(title: Text("Warning!"), message: Text("Please Enter a item to search"), dismissButton: .default(Text("Got it!")))
-                                           })
+                                VStack{
+                                    Image(systemName: "magnifyingglass")
+                                }
+                                .frame(width: 46, height: 46)
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .padding(.trailing, 20)
+                                .padding(.leading, 5)
+                                .shadow(radius: 1.5)
+                            })
+                            
+                            .alert(isPresented: $noValue,
+                                   content: {
+                                    Alert(title: Text("Warning!"), message: Text("Please Enter a item to search"), dismissButton: .default(Text("Got it!")))
+                                   })
                             .fullScreenCover(isPresented: $showSheet) {
                                 DiscoverDetailView(searchTerm: $searchTerm)
-                                .navigationBarBackButtonHidden(true)
-                                .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true)
                             }
                         }
                         
@@ -89,20 +89,24 @@ struct DiscoverView: View {
                             .padding(.top, 5)
                             .padding(.bottom, 10)
                         
+                        // MARK:- Top Sources Scetion
+                        
                         VStack {
-
+                            
                             ScrollView(.vertical,showsIndicators: false) {
                                 
                                 Text("Top News Sources")
                                     .font(Font.system(size: geo.size.width * 0.065))
                                     .fontWeight(.semibold)
                                     .frame(maxWidth : .infinity, alignment: .leading)
-
+                                    
                                     .padding(.leading, geo.size.width * 0.045)
                                 
                                 
                                 VStack (spacing : geo.size.height * 0.03){
                                     HStack (spacing : geo.size.width * 0.045){
+                           
+                                        // MARK:- ABC News
                                         
                                         NavigationLink(
                                             destination: ABCNewsDeatilView()
@@ -131,6 +135,8 @@ struct DiscoverView: View {
                                                     }
                                                 }
                                             })
+                                 
+                                        // MARK:- Al Jazeera News
                                         
                                         NavigationLink(
                                             destination: AlJazeeraNewsDetailView()
@@ -167,6 +173,8 @@ struct DiscoverView: View {
                                     .padding(.horizontal)
                                     
                                     HStack (spacing : geo.size.width * 0.045){
+                                
+                                        // MARK:- Associated Press News
                                         
                                         NavigationLink(
                                             destination: AssociatedPressNewsDetailView()
@@ -174,27 +182,29 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             ,label:{
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.03) {
-                                                    Image("Associated Press")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.125)
+                                                ZStack {
                                                     
-                                                    Text("Associated Press")
-                                                        .font(Font.system(size: geo.size.width * 0.042))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.03) {
+                                                        Image("Associated Press")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.125)
+                                                        
+                                                        Text("Associated Press")
+                                                            .font(Font.system(size: geo.size.width * 0.042))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                        
+                                        // MARK:- BBC News
                                         
                                         NavigationLink(
                                             destination: BBCNewsDetailView()
@@ -202,32 +212,34 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing :0) {
-                                                    Image("BBC")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.25)
-                                                        .padding(.bottom, geo.size.width * 0.045)
-                                                        .padding(.top, geo.size.width * 0.045)
+                                                ZStack {
                                                     
-                                                    Text("BBC")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing :0) {
+                                                        Image("BBC")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.25)
+                                                            .padding(.bottom, geo.size.width * 0.045)
+                                                            .padding(.top, geo.size.width * 0.045)
+                                                        
+                                                        Text("BBC")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     
                                     HStack (spacing : geo.size.width * 0.045){
+                                    
+                                        // MARK:- Bloomberg News
                                         
                                         NavigationLink(
                                             destination: BloombergNewsDetailView()
@@ -235,29 +247,31 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : 0) {
-                                                    Image("Bloomberg")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.3)
-                                                        .padding(.top, geo.size.width * 0.02)
+                                                ZStack {
                                                     
-                                                    Text("Bloomberg")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
-                                                        .padding(.top, geo.size.width * 0.02)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : 0) {
+                                                        Image("Bloomberg")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.3)
+                                                            .padding(.top, geo.size.width * 0.02)
+                                                        
+                                                        Text("Bloomberg")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                            .padding(.top, geo.size.width * 0.02)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                        
+                                        // MARK:- Business Insider News
                                         
                                         NavigationLink(
                                             destination: BusinessInsiderNewsDetailView()
@@ -265,30 +279,32 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : 0) {
-                                                    Image("Business Insider")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.33)
+                                                ZStack {
                                                     
-                                                    Text("Business Insider")
-                                                        .font(Font.system(size: geo.size.width * 0.042))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : 0) {
+                                                        Image("Business Insider")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.33)
+                                                        
+                                                        Text("Business Insider")
+                                                            .font(Font.system(size: geo.size.width * 0.042))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     
                                     HStack (spacing : geo.size.width * 0.045){
+                                     
+                                        // MARK:- CNN News
                                         
                                         NavigationLink(
                                             destination: CNNNewsDetailView()
@@ -296,28 +312,30 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.03) {
-                                                    Image("CNN News")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.2)
-                                                        .padding(.top, geo.size.width * 0.03)
+                                                ZStack {
                                                     
-                                                    Text("CNN News")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.03) {
+                                                        Image("CNN News")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.2)
+                                                            .padding(.top, geo.size.width * 0.03)
+                                                        
+                                                        Text("CNN News")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                        
+                                        // MARK:- Engadget News
                                         
                                         NavigationLink(
                                             destination: EngadgetNewsDetailView()
@@ -325,61 +343,64 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            
-                                            ZStack {
                                                 
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.04) {
-                                                    Image("Engadget")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.3)
-                                                        .padding(.top, geo.size.width * 0.035)
+                                                ZStack {
                                                     
-                                                    Text("Engadget")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.04) {
+                                                        Image("Engadget")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.3)
+                                                            .padding(.top, geo.size.width * 0.035)
+                                                        
+                                                        Text("Engadget")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     
                                     HStack (spacing : geo.size.width * 0.045){
-                                        
+                                     
+                                        // MARK:- ESPN News
                                         NavigationLink(
                                             destination: EspnNewsDetailView()
                                                 .navigationBarBackButtonHidden(true)
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.045) {
-                                                    Image("ESPN")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.25)
-                                                        .padding(.top, geo.size.width * 0.045)
+                                                ZStack {
                                                     
-                                                    Text("ESPN")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.045) {
+                                                        Image("ESPN")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.25)
+                                                            .padding(.top, geo.size.width * 0.045)
+                                                        
+                                                        Text("ESPN")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                        
+                                        // MARK:- Fortune News
                                         
                                         NavigationLink(
                                             destination: FortuneNewsDetailView()
@@ -387,31 +408,33 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : -geo.size.width * 0.07) {
-                                                    Image("Fortune")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.25)
+                                                ZStack {
                                                     
-                                                    Text("Fortune")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
-                                                        .padding(.bottom, geo.size.width * 0.03)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : -geo.size.width * 0.07) {
+                                                        Image("Fortune")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.25)
+                                                        
+                                                        Text("Fortune")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                            .padding(.bottom, geo.size.width * 0.03)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     
                                     HStack (spacing : geo.size.width * 0.045){
+                                        
+                                        // MARK:- Mashable News
                                         
                                         NavigationLink(
                                             destination: MashableNewsDetailView()
@@ -419,28 +442,30 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.04) {
-                                                    Image("Mashable")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.28)
-                                                        .padding(.top , geo.size.width * 0.05)
+                                                ZStack {
                                                     
-                                                    Text("Mashable")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.04) {
+                                                        Image("Mashable")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.28)
+                                                            .padding(.top , geo.size.width * 0.05)
+                                                        
+                                                        Text("Mashable")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                        
+                                        // MARK:- Reuters News
                                         
                                         NavigationLink(
                                             destination: ReutersNewsDetailView()
@@ -448,31 +473,33 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.02) {
-                                                    Image("Reuters")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.13)
-                                                        .padding(.top , geo.size.width * 0.045)
+                                                ZStack {
                                                     
-                                                    Text("Reuters")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.02) {
+                                                        Image("Reuters")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.13)
+                                                            .padding(.top , geo.size.width * 0.045)
+                                                        
+                                                        Text("Reuters")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     
                                     HStack (spacing : geo.size.width * 0.045){
+                                        
+                                        // MARK:- TechCrunch News
                                         
                                         NavigationLink(
                                             destination: TechCrunchNewsDetailView()
@@ -480,29 +507,31 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                
-                                                VStack(spacing : geo.size.width * 0.04) {
-                                                    Image("TechCrunch")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.18)
-                                                        .padding(.top , geo.size.width * 0.045)
+                                                ZStack {
                                                     
-                                                    Text("TechCrunch")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.04) {
+                                                        Image("TechCrunch")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.18)
+                                                            .padding(.top , geo.size.width * 0.045)
+                                                        
+                                                        Text("TechCrunch")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                       
+                                        // MARK:- TechRadar News
                                         
                                         NavigationLink(
                                             destination: TechRadarNewsDetailView()
@@ -510,31 +539,33 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.035) {
-                                                    Image("techradar")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.33)
-                                                        .padding(.top , geo.size.width * 0.05)
+                                                ZStack {
                                                     
-                                                    Text("TechRadar")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.035) {
+                                                        Image("techradar")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.33)
+                                                            .padding(.top , geo.size.width * 0.05)
+                                                        
+                                                        Text("TechRadar")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     
                                     HStack (spacing : geo.size.width * 0.045){
+                                        
+                                        // MARK:- The Hindu News
                                         
                                         NavigationLink(
                                             destination: TheHindunewsDetailView()
@@ -542,28 +573,30 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.03) {
-                                                    Image("The Hindu")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.25)
-                                                        .padding(.top , geo.size.width * 0.045)
+                                                ZStack {
                                                     
-                                                    Text("The Hindu")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.03) {
+                                                        Image("The Hindu")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.25)
+                                                            .padding(.top , geo.size.width * 0.045)
+                                                        
+                                                        Text("The Hindu")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                        
+                                        // MARK:- The Verge News
                                         
                                         NavigationLink(
                                             destination: TheVergeNewsDetailView()
@@ -571,31 +604,33 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.035) {
-                                                    Image("The Verge")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.13)
-                                                        .padding(.top , geo.size.width * 0.035)
+                                                ZStack {
                                                     
-                                                    Text("The Verge")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.035) {
+                                                        Image("The Verge")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.13)
+                                                            .padding(.top , geo.size.width * 0.035)
+                                                        
+                                                        Text("The Verge")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     
                                     HStack (spacing : geo.size.width * 0.045){
+                                        
+                                        // MARK:- The Times of India News
                                         
                                         NavigationLink(
                                             destination: TimesOfIndiaNewsDetailView()
@@ -603,29 +638,31 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.01) {
-                                                    Image("Times of India")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.4)
-                                                        .padding(.top, geo.size.width * 0.035)
+                                                ZStack {
                                                     
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
                                                     
-                                                    Text("TOI")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    VStack(spacing : geo.size.width * 0.01) {
+                                                        Image("Times of India")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.4)
+                                                            .padding(.top, geo.size.width * 0.035)
+                                                        
+                                                        
+                                                        Text("TOI")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                        
+                                        // MARK:- Wired News
                                         
                                         NavigationLink(
                                             destination: WiredNewsDetailView()
@@ -633,28 +670,28 @@ struct DiscoverView: View {
                                                 .navigationBarHidden(true)
                                             
                                             , label: {
-                                            ZStack {
-                                                
-                                                Color.white.opacity(1)
-                                                    .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
-                                                    .cornerRadius(geo.size.width * 0.03)
-                                                    .shadow(radius: 2)
-                                                    .blur(radius: 1.5)
-                                                
-                                                VStack(spacing : geo.size.width * 0.02) {
-                                                    Image("Wired")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width : geo.size.width * 0.25)
-                                                        .padding(.top, geo.size.width * 0.035)
+                                                ZStack {
                                                     
-                                                    Text("Wired")
-                                                        .font(Font.system(size: geo.size.width * 0.045))
-                                                        .fontWeight(.semibold)
-                                                        .foregroundColor(.black)
+                                                    Color.white.opacity(1)
+                                                        .frame(width : geo.size.width * 0.43, height: geo.size.height * 0.16)
+                                                        .cornerRadius(geo.size.width * 0.03)
+                                                        .shadow(radius: 2)
+                                                        .blur(radius: 1.5)
+                                                    
+                                                    VStack(spacing : geo.size.width * 0.02) {
+                                                        Image("Wired")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width : geo.size.width * 0.25)
+                                                            .padding(.top, geo.size.width * 0.035)
+                                                        
+                                                        Text("Wired")
+                                                            .font(Font.system(size: geo.size.width * 0.045))
+                                                            .fontWeight(.semibold)
+                                                            .foregroundColor(.black)
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
                                     }
                                     .padding(.bottom, geo.size.width * 0.02)
                                 }
@@ -681,4 +718,3 @@ struct ExploreView_Previews: PreviewProvider {
         DiscoverView()
     }
 }
-
