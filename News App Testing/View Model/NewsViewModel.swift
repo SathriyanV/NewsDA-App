@@ -15,6 +15,8 @@ class NewsViewModel: ObservableObject {
     
     @Published var isLoading : Bool = false
     
+    @Published var searchValue : String = "Apple"
+    
     let coreDM = CoreDataManager()
     
     
@@ -30,6 +32,7 @@ class NewsViewModel: ObservableObject {
     func fetchSavedNews() {
         
         news = coreDM.getAllNews()
+        
     }
     
     func saveNewsOffline(title : String, description : String, image : String, url : String, timeAt : String) {
@@ -40,6 +43,8 @@ class NewsViewModel: ObservableObject {
     func deleteNewsData(news : BookmarkNewsData) {
         coreDM.deleteNews(news: news)
     }
+    
+    // MARK:- Home page load section
     
     func loadHomePageData(){
         
@@ -55,7 +60,6 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
                             
@@ -65,16 +69,14 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
     
-    // India headlines categories
+    // MARK:- India Business category
     
     func LoadBusinessCategoryData(){
         
@@ -90,10 +92,8 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
-                            
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -101,14 +101,14 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
+    
+    // MARK:- India Entertainment category
     
     func LoadEntertainmentCategoryData(){
         
@@ -124,10 +124,8 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
-                            
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -135,14 +133,14 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
+    
+    // MARK:- India Health category
     
     func LoadHealthCategoryData(){
         
@@ -158,10 +156,8 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
-                            
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -169,14 +165,14 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
+    
+    // MARK:- India Science category
     
     func LoadScienceCategoryData(){
         
@@ -192,10 +188,8 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
-                            
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -203,14 +197,14 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
+    
+    // MARK:- India Sports category
     
     func LoadSportsCategoryData(){
         
@@ -226,10 +220,8 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
-                            
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -237,14 +229,14 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
+    
+    // MARK:- India Technology category
     
     func LoadTechnologyCategoryData(){
         
@@ -260,10 +252,8 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
-                            
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -271,14 +261,14 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
+    
+    // MARK:- India General category
     
     func LoadGeneralCategoryData(){
         
@@ -294,10 +284,8 @@ class NewsViewModel: ObservableObject {
                     
                     if let safeData = data {
                         
-                        
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
-                            
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -305,20 +293,18 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
     
-    // Search View news Function
+    // MARK:- Search View news Function
     
-    func LoadSearchViewNewsData(searchTopic : String){
+    func LoadSearchViewNewsData(searchTerm : String){
         
-        if let url = URL(string: API.getSearchViewNewsUrl(topic: searchTopic)) {
+        if let url = URL(string: API.getSearchViewNewsUrl(topic: searchTerm)) {
             
             let session = URLSession(configuration: .default)
             
@@ -335,6 +321,41 @@ class NewsViewModel: ObservableObject {
                         do {
                             let results = try decoder.decode(NewsData.self, from : safeData)
                             
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // MARK:- Source Detail news Function
+    
+    // ABC News
+    
+    func LoadABCNewsDetailData(){
+        
+        if let url = URL(string: API.getABCNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
                             
                             DispatchQueue.main.async {
                                 self.newsData = results.articles
@@ -342,14 +363,592 @@ class NewsViewModel: ObservableObject {
                         }catch {
                             print(error)
                         }
-                        
                     }
                 }
             }
             task.resume()
         }
-        
     }
+    
+    // AlJazeera News
+    
+    func LoadAlJazeeraNewsDetailData(){
+        
+        if let url = URL(string: API.getAlJazeeraNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // associated-press News
+    
+    func LoadAssociatedPressDetailData(){
+        
+        if let url = URL(string: API.getAssociatedPressNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // BBC News
+    
+    func LoadBBCNewsDetailData(){
+        
+        if let url = URL(string: API.getBBCNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // Bloomberg News
+    
+    func LoadBloombergNewsDetailData(){
+        
+        if let url = URL(string: API.getBloombergNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // BusinessInsider News
+    
+    func LoadBusinessInsiderDetailData(){
+        
+        if let url = URL(string: API.getBusinessInsiderNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // CNN News
+    
+    func LoadCNNNewsDetailData(){
+        
+        if let url = URL(string: API.getCNNNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // Engadget News
+    
+    func LoadEngadgetNewsDetailData(){
+        
+        if let url = URL(string: API.getEngadgetNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // ESPN News
+    
+    func LoadESPNNewsDetailData(){
+        
+        if let url = URL(string: API.getESPNNewsUrl()) { 
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // Fortune News
+    
+    func LoadFortuneNewsDetailData(){
+        
+        if let url = URL(string: API.getFortuneNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // Reuters News
+    
+    func LoadReutersNewsDetailData(){
+        
+        if let url = URL(string: API.getReutersNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // Mashable News
+    
+    func LoadMashableNewsDetailData(){
+        
+        if let url = URL(string: API.getMashableNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // TechCrunch News
+    
+    func LoadTechCrunchNewsDetailData(){
+        
+        if let url = URL(string: API.getTechCrunchNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // TechRadar News
+    
+    func LoadTechRadarNewsDetailData(){
+        
+        if let url = URL(string: API.getTechRadarNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // TheHindu News
+    
+    func LoadTheHinduNewsDetailData(){
+        
+        if let url = URL(string: API.getTheHinduNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // TimesOfIndia News
+    
+    func LoadTimesOfIndiaNewsDetailData(){
+        
+        if let url = URL(string: API.getTheTimesOfIndiaNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // Theverge News
+    
+    func LoadThevergeNewsDetailData(){
+        
+        if let url = URL(string: API.getThevergeNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // Wired News
+    
+    func LoadWiredNewsDetailData(){
+        
+        if let url = URL(string: API.getWiredNewsUrl()) {
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                
+                if error == nil {
+                    
+                    let decoder = JSONDecoder()
+                    
+                    if let safeData = data {
+                        
+                        print(safeData)
+                        
+                        do {
+                            let results = try decoder.decode(NewsData.self, from : safeData)
+                            
+                            DispatchQueue.main.async {
+                                self.newsData = results.articles
+                            }
+                        }catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    // MARK:- News Detail view format section
     
     func displayNewsDetailView(title : String, description : String, url : String) -> some View {
         
@@ -377,44 +976,39 @@ class NewsViewModel: ObservableObject {
                 
                 Spacer()
             }
-
             Spacer()
             
-                    VStack(spacing : 5){
-                        Text("More information about the news...")
-                            .foregroundColor(.white)
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .frame(maxWidth : .infinity, alignment : .leading)
-                            .padding(.horizontal)
-                            .padding(.top, 20)
+            VStack(spacing : 5){
+                Text("More information about the news...")
+                    .foregroundColor(.white)
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .frame(maxWidth : .infinity, alignment : .leading)
+                    .padding(.horizontal)
+                    .padding(.top, 20)
+                
+                NavigationLink(
+                    destination: DetailPageURLView(url: url),
+                    label: {
                         
-                        
-                        NavigationLink(
-                            destination: DetailPageURLView(url: url),
-                            label: {
-                                
                         Text("click here to read about it")
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
                             .font(.subheadline)
-                            
                             .frame(maxWidth : .infinity, alignment : .leading)
                             .padding(.horizontal)
                             .padding(.bottom, 20)
                         
                     })
-                        
-                    }
-                    .background(Color(hue: 1.0, saturation: 0.006, brightness: 0.518))
-                
-            
+            }
+            .background(Color(hue: 1.0, saturation: 0.006, brightness: 0.518))
         }
     }
 }
 
+// MARK:- Time and Date format change section
+
 class DateTimeDisplay: ObservableObject {
-    
     
     func DateTimePrint(fullString : String) -> String {
         
@@ -428,6 +1022,7 @@ class DateTimeDisplay: ObservableObject {
         let time = timeArr[0]
         
         let finalDateTime = "\(name)   \(time)"
+        
         return UTCToLocal(UTCDateString: finalDateTime)
     }
     
@@ -435,10 +1030,10 @@ class DateTimeDisplay: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Input Format
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-        let UTCDate = dateFormatter.date(from: UTCDateString)
+        guard let UTCDate = dateFormatter.date(from: UTCDateString) else { return "No information" }
         dateFormatter.dateFormat = "dd-MM-yyyy   hh:mm a" // Output Format
         dateFormatter.timeZone = TimeZone.current
-        let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
+        let UTCToCurrentFormat = dateFormatter.string(from: UTCDate)
         return UTCToCurrentFormat
     }
 }

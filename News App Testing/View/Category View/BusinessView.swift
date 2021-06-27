@@ -80,7 +80,6 @@ struct BusinessView: View {
                                             Button(action: {}, label: {
                                                 Image(systemName: "square.and.arrow.up")
                                             })
-                                            
                                         }
                                     }),
                                 
@@ -121,7 +120,6 @@ struct BusinessView: View {
                                     .padding()
                                     .padding(.vertical, -10)
                                 })
- 
                         }
                         .navigationBarHidden(true)
                     }
@@ -129,8 +127,6 @@ struct BusinessView: View {
                         
                         newsViewModel.startLoadingScreen()
                     })
-                
-                
                 }
             }
             .background(Color(hue: 0.509, saturation: 0.0, brightness: 0.96))

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct UrlImageViewDetailView: View {
     
     @ObservedObject var urlImageModel : UrlImageModel
@@ -22,8 +21,11 @@ struct UrlImageViewDetailView: View {
         Image(uiImage: urlImageModel.image ?? UrlImageViewDetailView.defaultImage!)
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .cornerRadius(10)
             .padding(.horizontal, 15)
             .padding(.top, 15)
+            .shadow(radius: 2)
+            
     }
 }
 

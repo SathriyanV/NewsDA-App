@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UrlImageViewBookmarkView: View {
+    
     @ObservedObject var urlImageModel : UrlImageModel
     
     static var defaultImage = UIImage(named: "NewsImage")

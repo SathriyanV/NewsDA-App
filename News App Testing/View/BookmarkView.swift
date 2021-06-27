@@ -15,53 +15,55 @@ struct BookmarkView: View {
     
     var body: some View {
         
-            NavigationView {
-                        List{
-                            ForEach(newsViewModel.news, id:\.self) { item in
-                              
-                                HStack (spacing: 2){
-                                    UrlImageViewMainView(urlString: item.newsImage)
-                                    VStack(spacing : 10){
-                                        NavigationLink(
-                                            destination: DetailPageURLView(url: item.newsUrl),
-                                            label: {
-                                                Text(item.newsTitle ?? "no title")
-                                                    .font(Font.system(size: 15.5))
-                                                    .fontWeight(.semibold)
-                                                    .lineSpacing(2)
-                                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                                    .padding(.top, 10)
-                                            })
-                                            .padding(.trailing, 3)
-                                        
-                                            Text(dateTimeDisplay.DateTimePrint(fullString : item.publishedTime ?? "no time"))
-                                                .font(Font.system(size: 12))
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                               
-                                                .padding(.bottom, 10)
-                                    }
-                                   
-                                }
-                                .padding(.top, 5)
-                                .padding(.bottom, 5)
-                                
-                            }
+        NavigationView {
+            
+            List{
+                
+                ForEach(newsViewModel.news, id:\.self) { item in
+                    
+                    HStack (spacing: 2){
+                        
+                        UrlImageViewMainView(urlString: item.newsImage)
+                        
+                        VStack(spacing : 10){
                             
-                            .onDelete(perform: { indexSet in
-                                indexSet.forEach{index in
-                                    let newsDelete = newsViewModel.news[index]
-                                    newsViewModel.deleteNewsData(news: newsDelete)
-                                    newsViewModel.fetchSavedNews()
-                                }
-                            })
+                            NavigationLink(
+                                
+                                destination: DetailPageURLView(url: item.newsUrl),
+                                
+                                label: {
+                                    Text(item.newsTitle ?? "no title")
+                                        .font(Font.system(size: 15.5))
+                                        .fontWeight(.semibold)
+                                        .lineSpacing(2)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.top, 10)
+                                })
+                                .padding(.trailing, 3)
+                            
+                            Text(dateTimeDisplay.DateTimePrint(fullString : item.publishedTime ?? "no time"))
+                                .font(Font.system(size: 12))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.bottom, 10)
                         }
-                        .onAppear(perform: {
-                            newsViewModel.fetchSavedNews()
-                    })
-                        .navigationTitle(Text("Bookmarked News"))
-                        .navigationBarTitleDisplayMode(.automatic)
+                    }
+                    .padding(.top, 5)
+                    .padding(.bottom, 5)
+                }
+                .onDelete(perform: { indexSet in
+                    indexSet.forEach{index in
+                        let newsDelete = newsViewModel.news[index]
+                        newsViewModel.deleteNewsData(news: newsDelete)
+                        newsViewModel.fetchSavedNews()
+                    }
+                })
+            }
+            .onAppear(perform: {
+                newsViewModel.fetchSavedNews()
+            })
+            .navigationTitle(Text("Bookmarked News"))
+            .navigationBarTitleDisplayMode(.automatic)
         }
-              
     }
 }
 

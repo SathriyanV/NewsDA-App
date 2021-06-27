@@ -34,6 +34,8 @@ struct OnBoardingView_Previews: PreviewProvider {
     }
 }
 
+// MARK:- Onboarding screen one
+
 struct onBoardingOne: View {
     var body: some View {
         VStack{
@@ -69,9 +71,7 @@ struct onBoardingOne: View {
             .frame(maxWidth : .infinity, alignment: .trailing)
             .padding(.trailing)
             .padding(.bottom, 50)
-            
-            
-            
+
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Color.white)
@@ -81,6 +81,8 @@ struct onBoardingOne: View {
         .shadow(radius: 5)
     }
 }
+
+// MARK:- Onboarding screen two
 
 struct onBoardingTwo: View {
     var body: some View {
@@ -132,8 +134,6 @@ struct onBoardingTwo: View {
             .padding(.trailing)
             .padding(.bottom, 50)
             
-            
-            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Color.white)
@@ -143,6 +143,8 @@ struct onBoardingTwo: View {
         .shadow(radius: 5)
     }
 }
+
+// MARK:- Onboarding screen three
 
 struct onBoardingThree: View {
     var body: some View {
@@ -195,8 +197,6 @@ struct onBoardingThree: View {
             .padding(.trailing)
             .padding(.bottom, 50)
             
-            
-            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Color.white)
@@ -206,6 +206,8 @@ struct onBoardingThree: View {
         .shadow(radius: 5)
     }
 }
+
+// MARK:- Onboarding screen four
 
 struct onBoardingLast: View {
     
@@ -253,17 +255,17 @@ struct onBoardingLast: View {
             }, label: {
                 HStack{
                     Text("Exit")
-                        .font(Font.system(size: 25))
+                        .font(Font.system(size: 22))
                         .foregroundColor(Color(red: 0.999, green: 0.174, blue: 0.273))
                         .fontWeight(.bold)
                     
                 }
                 .frame(maxWidth : .infinity, alignment: .center)
+                .frame(width : 85, height : 20)
                 .padding()
                 .background(Color.white)
-                .frame(width : 150)
                 .cornerRadius(10)
-                .shadow(radius: 3)
+                .shadow(radius: 1.5)
                 .padding(.bottom, 50)
             })
             
