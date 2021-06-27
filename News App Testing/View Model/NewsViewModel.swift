@@ -19,6 +19,8 @@ class NewsViewModel: ObservableObject {
     
     let coreDM = CoreDataManager()
     
+   
+    // MARK:- Progress view function
     
     func startLoadingScreen() {
         
@@ -28,11 +30,12 @@ class NewsViewModel: ObservableObject {
             self.isLoading = false
         }
     }
+ 
+    // MARK:- Core Data CRUD section
     
     func fetchSavedNews() {
         
         news = coreDM.getAllNews()
-        
     }
     
     func saveNewsOffline(title : String, description : String, image : String, url : String, timeAt : String) {
@@ -42,6 +45,16 @@ class NewsViewModel: ObservableObject {
     
     func deleteNewsData(news : BookmarkNewsData) {
         coreDM.deleteNews(news: news)
+    }
+    
+    
+    // MARK:- Share sheet function
+    
+    func shareNews(news : String) {
+        
+        let shareView = UIActivityViewController(activityItems: [news], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(shareView, animated: true, completion: nil)
+        
     }
     
     // MARK:- Home page load section
