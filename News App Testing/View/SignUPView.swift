@@ -41,6 +41,7 @@ struct SignUPView: View {
                             
                             TextField("Name", text: $name)
                                 .font(Font.system(size: geo.size.height * 0.022))
+                                .disableAutocorrection(true)
                                 .padding(.leading, geo.size.width * 0.035)
                                 .frame(width : geo.size.width * 0.85, height: geo.size.height * 0.065)
                                 .background(Color.white)
@@ -170,7 +171,7 @@ struct SignUPView: View {
                         .frame(maxWidth : .infinity, alignment: .center)
                     }
                     
-                    .navigationBarHidden(true)
+                    .navigationBarHidden(false)
                 }
                 .frame(maxWidth : .infinity, maxHeight: .infinity, alignment: .top)
                 .background(Color("BGColor"))
@@ -178,6 +179,7 @@ struct SignUPView: View {
                 
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 

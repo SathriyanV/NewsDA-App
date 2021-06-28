@@ -15,6 +15,7 @@ struct DetailPageWebView : UIViewRepresentable{
     
     func makeUIView(context: Context) -> DetailPageWebView.UIViewType {
         WKWebView()
+            
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {

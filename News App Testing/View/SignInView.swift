@@ -29,6 +29,7 @@ struct SignInView: View {
                             Text("Please enter your Username or Email and Password")
                                 .font(Font.system(size: geo.size.height * 0.02))
                                 .fontWeight(.semibold)
+                                .disableAutocorrection(true)
                                 .foregroundColor(Color("DividerColor"))
                                 .frame(maxWidth : .infinity, alignment: .leading)
                                 .padding(.leading, geo.size.width * 0.07)
@@ -167,7 +168,7 @@ struct SignInView: View {
                         .frame(maxWidth : .infinity, alignment: .center)
                     }
                     
-                    .navigationBarHidden(true)
+                    .navigationBarHidden(false)
                 }
                 .frame(maxWidth : .infinity, maxHeight: .infinity, alignment: .top)
                 .background(Color("BGColor"))
@@ -175,6 +176,7 @@ struct SignInView: View {
                 
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
